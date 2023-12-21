@@ -23,20 +23,19 @@ public class TextComposite implements TextComponent {
     }
 
     @Override
-    public void addComponent(TextComponent component) {
+    public void add(TextComponent component) {
         components.add(component);
     }
 
     @Override
-    public void removeComponent(TextComponent component) {
+    public void remove(TextComponent component) {
         components.remove(component);
     }
 
     @Override
     public int count() {
-//        return components.stream()
-//                .mapToInt(TextComponent::count)
-//                .sum();
-        return components.size();
+        return components.stream()
+                .mapToInt(TextComponent::count)
+                .sum();
     }
 }

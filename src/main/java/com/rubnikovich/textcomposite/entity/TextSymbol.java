@@ -15,13 +15,13 @@ public class TextSymbol implements TextComponent {
     }
 
     @Override
-    public void addComponent(TextComponent component) {
-        throw new UnsupportedOperationException();
+    public void add(TextComponent component) {
+        throw new UnsupportedOperationException("can't add anything into the symbol");
     }
 
     @Override
-    public void removeComponent(TextComponent component) {
-        throw new UnsupportedOperationException();
+    public void remove(TextComponent component) {
+        throw new UnsupportedOperationException("can't remove anything from the symbol");
     }
 
     @Override
@@ -31,9 +31,7 @@ public class TextSymbol implements TextComponent {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("");
-        sb.append(symbol);
-        return sb.toString();
+        return symbol.toString();
     }
 
     private TextType setType() {

@@ -11,7 +11,7 @@ public class SymbolHandler extends AbstractHandler {
     public TextComponent handleRequest(String text) {
         TextComponent lexeme = new TextComposite(TextType.LEXEME);
         for (int i = 0; i < text.length(); i++) {
-            lexeme.addComponent(new TextSymbol(text.charAt(i)));
+            lexeme.add(new TextSymbol(text.charAt(i)));
         }
         return lexeme;
     }

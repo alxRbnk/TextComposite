@@ -4,9 +4,9 @@ public interface TextComponent {
 
     String collect();
 
-    void addComponent(TextComponent component);
+    void add(TextComponent component);
 
-    void removeComponent(TextComponent component);
+    void remove(TextComponent component);
 
     int count();
 

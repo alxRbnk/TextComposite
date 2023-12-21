@@ -17,7 +17,7 @@ public class LexemeHandler extends AbstractHandler {
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()){
-            sentence.addComponent(successor.handleRequest(matcher.group()));
+            sentence.add(successor.handleRequest(matcher.group()));
         }
         return sentence;
     }

@@ -17,7 +17,7 @@ public class ParagraphHandler extends AbstractHandler {
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
-            textComponent.addComponent(successor.handleRequest(matcher.group()));
+            textComponent.add(successor.handleRequest(matcher.group()));
         }
         return textComponent;
     }

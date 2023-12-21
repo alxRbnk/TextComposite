@@ -17,7 +17,7 @@ public class SentenceHandler extends AbstractHandler {
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()){
-            paragraph.addComponent(successor.handleRequest(matcher.group()));
+            paragraph.add(successor.handleRequest(matcher.group()));
         }
         return paragraph;
     }
