@@ -1,4 +1,4 @@
-package com.rubnikovich.textcomposite.composite;
+package com.rubnikovich.textcomposite.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +34,9 @@ public class TextComposite implements TextComponent {
 
     @Override
     public int count() {
-        return components.stream()
-                .mapToInt(TextComponent::count)
-                .sum();
+//        return components.stream()
+//                .mapToInt(TextComponent::count)
+//                .sum();
+        return components.size();
     }
 }

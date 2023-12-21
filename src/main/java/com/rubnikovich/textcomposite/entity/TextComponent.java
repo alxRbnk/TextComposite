@@ -1,4 +1,4 @@
-package com.rubnikovich.textcomposite.composite;
+package com.rubnikovich.textcomposite.entity;
 
 public interface TextComponent {
 
