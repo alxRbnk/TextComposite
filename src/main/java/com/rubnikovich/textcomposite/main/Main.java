@@ -10,10 +10,20 @@ public class Main {
     public static void main(String[] args) throws CustomException {
         CustomReader customReader = new CustomReaderImpl();
         String text = customReader.read("files/text.txt");
+
         TextComponent paragraph = new ParagraphHandler().handleRequest(text);
+
         System.out.println(paragraph.collect());
+        System.out.println(paragraph.count());
+
+//        System.out.println(paragraph.getTextComponent().get());
+
+
+
+
+
+
 
 
     }
 }
-//65-90 A-Z;  97-122 a-z

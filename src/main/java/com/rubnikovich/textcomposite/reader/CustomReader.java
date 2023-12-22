@@ -3,5 +3,5 @@ package com.rubnikovich.textcomposite.reader;
 import com.rubnikovich.textcomposite.exception.CustomException;
 
 public interface CustomReader {
-    String read(String str) throws CustomException;
+    String read(String filePath) throws CustomException;
 }

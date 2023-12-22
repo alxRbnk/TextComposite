@@ -38,4 +38,9 @@ public class TextComposite implements TextComponent {
                 .mapToInt(TextComponent::count)
                 .sum();
     }
+
+    @Override
+    public List<TextComponent> getTextComponent(){
+        return components;
+    }
 }

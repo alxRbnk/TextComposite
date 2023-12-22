@@ -13,12 +13,14 @@ public class ParagraphHandler extends AbstractHandler {
 
     @Override
     public TextComponent handleRequest(String text) {
-        TextComponent textComponent = new TextComposite(TextType.TEXT);
+        TextComponent entireText = new TextComposite(TextType.TEXT);
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
-            textComponent.add(successor.handleRequest(matcher.group()));
+            String substring = matcher.group();
+            TextComponent textComponent = successor.handleRequest(substring);
+            entireText.add(textComponent);
         }
-        return textComponent;
+        return entireText;
     }
 }

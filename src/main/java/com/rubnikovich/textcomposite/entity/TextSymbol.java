@@ -1,5 +1,8 @@
 package com.rubnikovich.textcomposite.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TextSymbol implements TextComponent {
     private TextType type;
     private Character symbol;
@@ -30,13 +33,18 @@ public class TextSymbol implements TextComponent {
     }
 
     @Override
+    public List<TextComponent> getTextComponent() {
+        return new ArrayList<>();
+    }
+
+    @Override
     public String toString() {
         return symbol.toString();
     }
 
     private TextType setType() {
         type = TextType.PUNCTUATION;
-        if (Character.isLetter(symbol)) {
+        if (Character.isLetter(symbol)) { //NullPointerException
             this.type = TextType.LETTER;
         }
         return type;

@@ -1,5 +1,7 @@
 package com.rubnikovich.textcomposite.entity;
 
+import java.util.List;
+
 public interface TextComponent {
 
     String collect();
@@ -9,5 +11,7 @@ public interface TextComponent {
     void remove(TextComponent component);
 
     int count();
+
+    List<TextComponent> getTextComponent();
 
 }
