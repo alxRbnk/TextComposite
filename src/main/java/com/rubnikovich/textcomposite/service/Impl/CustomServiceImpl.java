@@ -11,6 +11,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CustomServiceImpl implements CustomService {
+    private static CustomServiceImpl instance = new CustomServiceImpl();
+
+    private CustomServiceImpl() {
+    }
+
+    public static CustomServiceImpl getInstance() {
+        return instance;
+    }
 
     public void sortParagraph(TextComponent textComponent) {
         Collections.sort(textComponent.getTextComponent(), (o1, o2) -> o1.getTextComponent().size() - o2.getTextComponent().size());

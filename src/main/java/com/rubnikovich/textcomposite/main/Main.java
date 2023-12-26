@@ -6,6 +6,8 @@ import com.rubnikovich.textcomposite.parser.AbstractParser;
 import com.rubnikovich.textcomposite.parser.ParagraphParser;
 import com.rubnikovich.textcomposite.reader.CustomReader;
 import com.rubnikovich.textcomposite.reader.impl.CustomReaderImpl;
+import com.rubnikovich.textcomposite.service.CustomService;
+import com.rubnikovich.textcomposite.service.Impl.CustomServiceImpl;
 
 public class Main {
     public static void main(String[] args) throws CustomException {
@@ -13,14 +15,12 @@ public class Main {
         String text = customReader.read("files/text.txt");
 
         AbstractParser abstractHandler = new ParagraphParser();
-        TextComponent textComponent = abstractHandler.parse(text);
-        System.out.println(textComponent.collect());
-        System.out.println(textComponent.count());
+        TextComponent textComponent = abstractHandler.handleRequest(text);
 
-        System.out.println("------------------");
+        CustomService customService = CustomServiceImpl.getInstance();
+        System.out.println(customService.getRepetitiveWords(textComponent));
+        System.out.println(customService.getCountVowelConsonant(textComponent));
 
-        AbstractParser abstractHandler1 = new ParagraphParser();
-        TextComponent textComponent1 = abstractHandler1.parse(text);
 
     }
 }

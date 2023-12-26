@@ -10,8 +10,6 @@ import java.util.regex.Pattern;
 public abstract class AbstractParser {
     public static int textDeep = 0;
 
-    public abstract TextComponent parse(String text);
-
     public TextComponent handleRequest(String allText) {
         TextComponent text = new TextComposite(TextType.values()[textDeep]);
         Pattern pattern = Pattern.compile(TextType.values()[textDeep].getRegex());
