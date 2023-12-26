@@ -38,6 +38,11 @@ public class TextSymbol implements TextComponent {
     }
 
     @Override
+    public TextType getType() {
+        return type;
+    }
+
+    @Override
     public String toString() {
         return symbol.toString();
     }

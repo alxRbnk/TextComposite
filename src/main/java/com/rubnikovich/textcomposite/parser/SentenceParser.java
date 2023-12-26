@@ -7,18 +7,17 @@ import com.rubnikovich.textcomposite.entity.TextType;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SentenceHandler extends AbstractHandler {
-    private static final String REGEX = " {1,4}.+?\\."; //fixme
-    private AbstractHandler successor = new LexemeHandler();
+public class SentenceParser extends AbstractParser {
+    private AbstractParser successor = new LexemeParser();
 
     @Override
-    public TextComponent handleRequest(String text) {
+    public TextComponent parse(String text) {
         TextComponent paragraph = new TextComposite(TextType.PARAGRAPH);
-        Pattern pattern = Pattern.compile(REGEX);
+        Pattern pattern = Pattern.compile(TextType.PARAGRAPH.getRegex());
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()){
             String substring = matcher.group();
-            TextComponent textComponent = successor.handleRequest(substring);
+            TextComponent textComponent = successor.parse(substring);
             paragraph.add(textComponent);
         }
         return paragraph;

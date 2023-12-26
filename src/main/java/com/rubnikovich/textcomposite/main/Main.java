@@ -2,7 +2,8 @@ package com.rubnikovich.textcomposite.main;
 
 import com.rubnikovich.textcomposite.entity.TextComponent;
 import com.rubnikovich.textcomposite.exception.CustomException;
-import com.rubnikovich.textcomposite.parser.ParagraphHandler;
+import com.rubnikovich.textcomposite.parser.AbstractParser;
+import com.rubnikovich.textcomposite.parser.ParagraphParser;
 import com.rubnikovich.textcomposite.reader.CustomReader;
 import com.rubnikovich.textcomposite.reader.impl.CustomReaderImpl;
 
@@ -11,19 +12,15 @@ public class Main {
         CustomReader customReader = new CustomReaderImpl();
         String text = customReader.read("files/text.txt");
 
-        TextComponent paragraph = new ParagraphHandler().handleRequest(text);
+        AbstractParser abstractHandler = new ParagraphParser();
+        TextComponent textComponent = abstractHandler.parse(text);
+        System.out.println(textComponent.collect());
+        System.out.println(textComponent.count());
 
-        System.out.println(paragraph.collect());
-        System.out.println(paragraph.count());
+        System.out.println("------------------");
 
-//        System.out.println(paragraph.getTextComponent().get());
-
-
-
-
-
-
-
+        AbstractParser abstractHandler1 = new ParagraphParser();
+        TextComponent textComponent1 = abstractHandler1.parse(text);
 
     }
 }

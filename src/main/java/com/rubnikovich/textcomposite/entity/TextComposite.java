@@ -43,4 +43,16 @@ public class TextComposite implements TextComponent {
     public List<TextComponent> getTextComponent(){
         return components;
     }
+
+    @Override
+    public TextType getType(){
+        return type;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("TextComposite{");
+        sb.append("type=").append(type);
+        return sb.toString();
+    }
 }
