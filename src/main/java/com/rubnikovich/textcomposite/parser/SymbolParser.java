@@ -8,8 +8,7 @@ import com.rubnikovich.textcomposite.entity.TextType;
 public class SymbolParser extends AbstractParser {
 
     @Override
-    public TextComponent handleRequest(String text) {
-        AbstractParser.textDeep = 0;
+    public TextComponent parse(String text) {
         TextComponent lexeme = new TextComposite(TextType.LEXEME);
         for (int i = 0; i < text.length(); i++) {
             TextComponent symbol = new TextSymbol(text.charAt(i));

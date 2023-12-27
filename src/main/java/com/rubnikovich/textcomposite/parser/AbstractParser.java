@@ -8,18 +8,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class AbstractParser {
-    public static int textDeep = 0;
+    private static int deep = 0;
 
-    public TextComponent handleRequest(String allText) {
-        TextComponent text = new TextComposite(TextType.values()[textDeep]);
-        Pattern pattern = Pattern.compile(TextType.values()[textDeep].getRegex());
+    public TextComponent parse(String allText) {
+        AbstractParser abstractParser = TextType.values()[deep].getSuccessor();
+        TextComponent text = new TextComposite(TextType.values()[deep]);
+        Pattern pattern = Pattern.compile(TextType.values()[deep].getRegex());
         Matcher matcher = pattern.matcher(allText);
         while (matcher.find()) {
-            textDeep++;
+            deep++;
             String substring = matcher.group();
-            AbstractParser abstractParser = TextType.values()[textDeep].getSuccessor();
-            TextComponent textComponent = abstractParser.handleRequest(substring);
+            TextComponent textComponent = abstractParser.parse(substring);
             text.add(textComponent);
+            deep--;
         }
         return text;
     }

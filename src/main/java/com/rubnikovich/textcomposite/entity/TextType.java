@@ -1,9 +1,6 @@
 package com.rubnikovich.textcomposite.entity;
 
-import com.rubnikovich.textcomposite.parser.AbstractParser;
-import com.rubnikovich.textcomposite.parser.LexemeParser;
-import com.rubnikovich.textcomposite.parser.SentenceParser;
-import com.rubnikovich.textcomposite.parser.SymbolParser;
+import com.rubnikovich.textcomposite.parser.*;
 
 public enum TextType {
     TEXT("( {4}.*?(?= {4})| {4}.+)", new SentenceParser()),

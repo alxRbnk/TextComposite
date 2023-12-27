@@ -6,6 +6,7 @@ import com.rubnikovich.textcomposite.service.CustomService;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,11 +43,14 @@ public class CustomServiceImpl implements CustomService {
     }
 
     public void removeSentenceShorterThan(TextComponent textComponent, int countLexeme) {
-        for (int i = 0; i < textComponent.getTextComponent().size(); i++) {
-            for (int j = 0; j < textComponent.getTextComponent().get(i).getTextComponent().size(); j++) {
-                int countLexemeIntoSentence = textComponent.getTextComponent().get(i).getTextComponent().get(j).getTextComponent().size();
-                if (countLexeme > countLexemeIntoSentence) {
-                    textComponent.getTextComponent().get(i).remove(textComponent.getTextComponent().get(i).getTextComponent().get(j));
+        Iterator<TextComponent> paragraphIterator = textComponent.getTextComponent().iterator();
+        while (paragraphIterator.hasNext()) {
+            TextComponent sentence = paragraphIterator.next();
+            Iterator<TextComponent> sentenceIterator = sentence.getTextComponent().iterator();
+            while (sentenceIterator.hasNext()) {
+                TextComponent lexeme = sentenceIterator.next();
+                if (lexeme.getTextComponent().size() < countLexeme) {
+                    sentenceIterator.remove();
                 }
             }
         }
@@ -57,10 +61,10 @@ public class CustomServiceImpl implements CustomService {
         for (int i = 0; i < textComponent.getTextComponent().size(); i++) {
             for (int j = 0; j < textComponent.getTextComponent().get(i).getTextComponent().size(); j++) {
                 String sentence = textComponent.getTextComponent().get(i).getTextComponent().get(j).collect();
-                Pattern pattern5 = Pattern.compile(TextType.LEXEME.getRegex());
-                Matcher matcher5 = pattern5.matcher(sentence);
-                while (matcher5.find()) {
-                    String substring = matcher5.group().toLowerCase();
+                Pattern pattern = Pattern.compile(TextType.LEXEME.getRegex());
+                Matcher matcher = pattern.matcher(sentence);
+                while (matcher.find()) {
+                    String substring = matcher.group().toLowerCase();
                     if (map.containsKey(substring)) {
                         map.put(substring, map.get(substring) + 1);
                     } else {
