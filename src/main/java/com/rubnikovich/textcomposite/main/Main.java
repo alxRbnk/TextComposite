@@ -6,6 +6,8 @@ import com.rubnikovich.textcomposite.parser.AbstractParser;
 import com.rubnikovich.textcomposite.parser.ParagraphParser;
 import com.rubnikovich.textcomposite.reader.CustomReader;
 import com.rubnikovich.textcomposite.reader.impl.CustomReaderImpl;
+import com.rubnikovich.textcomposite.service.CustomService;
+import com.rubnikovich.textcomposite.service.Impl.CustomServiceImpl;
 
 public class Main {
     public static void main(String[] args) throws CustomException {
@@ -15,13 +17,10 @@ public class Main {
         AbstractParser abstractHandler = new ParagraphParser();
         TextComponent textComponent = abstractHandler.parse(text);
 
-        for (int i = 0; i < textComponent.getTextComponent().size(); i++) {
-            for (int j = 0; j < textComponent.getTextComponent().get(i).getTextComponent().size(); j++) {
-                System.out.println(textComponent.getTextComponent().get(i).getTextComponent().get(j).getTextComponent().size());
-                for (int k = 0; k < textComponent.getTextComponent().get(i).getTextComponent().get(j).getTextComponent().size(); k++) {
-                    System.out.println(textComponent.getTextComponent().get(i).getTextComponent().get(j).getTextComponent().get(k).collect());
-                }
-            }
-        }
+        CustomService service = CustomServiceImpl.getInstance();
+        service.removeSentenceShorterThan(textComponent,20);
+
+
+
     }
 }

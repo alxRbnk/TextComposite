@@ -4,10 +4,7 @@ import com.rubnikovich.textcomposite.entity.TextComponent;
 import com.rubnikovich.textcomposite.entity.TextType;
 import com.rubnikovich.textcomposite.service.CustomService;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,14 +40,14 @@ public class CustomServiceImpl implements CustomService {
     }
 
     public void removeSentenceShorterThan(TextComponent textComponent, int countLexeme) {
-        Iterator<TextComponent> paragraphIterator = textComponent.getTextComponent().iterator();
-        while (paragraphIterator.hasNext()) {
-            TextComponent sentence = paragraphIterator.next();
-            Iterator<TextComponent> sentenceIterator = sentence.getTextComponent().iterator();
-            while (sentenceIterator.hasNext()) {
-                TextComponent lexeme = sentenceIterator.next();
-                if (lexeme.getTextComponent().size() < countLexeme) {
-                    sentenceIterator.remove();
+        Iterator<TextComponent> textIterator = textComponent.getTextComponent().iterator();
+        while (textIterator.hasNext()) {
+            TextComponent paragraph = textIterator.next();
+            Iterator<TextComponent> paragraphIterator = paragraph.getTextComponent().iterator();
+            while (paragraphIterator.hasNext()) {
+                TextComponent sentence = paragraphIterator.next();
+                if (sentence.getTextComponent().size() < countLexeme) {
+                    paragraphIterator.remove();
                 }
             }
         }
